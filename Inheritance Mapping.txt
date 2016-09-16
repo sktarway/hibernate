@@ -1,0 +1,49 @@
+
+Table per Class
+-----------------------------------------------------------
+<class name="str.Payment" table="PAYMENT">
+<id name="paymentId" column="pid" />
+<discriminator column="dcolumn" type="string" length="5"/>
+<property name="amount" column="amt" />
+ 
+<subclass name="str.CreditCard" discriminator-value="CC">
+<property name="CreditCardType" column="cctype" length="10" />
+</subclass>
+ 
+<subclass name="str.Cheque" discriminator-value="cq">
+<property name="ChequeType" column="cqtype" length="10" />
+</subclass>
+
+1 table --> Payment will be created 
+
+Table per SubClass
+-----------------------------------------------------------
+<id name="paymentId" column="pid" />
+<property name="amount" column="amt" />
+ 
+<joined-subclass name="str.CreditCard" table="CreditCard">
+<key column="dummy1" />
+<property name="CreditCardType" column="cctype" length="10" />
+</joined-subclass>
+ 
+<joined-subclass name="str.Cheque" table="Cheque">
+<key column="dummy2" />
+<property name="ChequeType" column="cqtype" length="10" />
+</joined-subclass>
+
+3 tables --> Payment, CreditCard, Cheque will be created.
+
+Table Per Concrete Class
+-----------------------------------------------------------
+<id name="paymentId" column="pid" />
+<property name="amount" column="amt" />
+
+<union-subclass name="str.CreditCard">
+<property name="CreditCardType" column="cctype" length="10" />
+</union-subclass>
+
+<union-subclass name="str.Cheque">
+<property name="ChequeType" column="cqtype" length="10" />
+</union-subclass>
+
+2 tables --> CreditCard and Cheque will be created.

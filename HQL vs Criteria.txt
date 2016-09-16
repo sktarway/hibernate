@@ -1,0 +1,5 @@
+HQL is to perform both select and non-select operations on the data,  but Criteria is only for selecting the data, we cannot perform non-select operations using criteria
+HQL is suitable for executing Static Queries, where as Criteria is suitable for executing Dynamic Queries
+HQL doesn’t support pagination concept, but we can achieve pagination with Criteria
+Criteria used to take more time to execute then HQL
+With Criteria we are safe with SQL Injection because of its dynamic query generation but in HQL as your queries are either fixed or parametrized, there is no safe from SQL Injection.
